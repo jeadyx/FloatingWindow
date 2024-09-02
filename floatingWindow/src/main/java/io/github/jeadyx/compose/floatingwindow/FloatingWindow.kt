@@ -43,6 +43,11 @@ import androidx.lifecycle.setViewTreeLifecycleOwner
 import androidx.savedstate.setViewTreeSavedStateRegistryOwner
 import kotlin.math.abs
 
+/**
+ * A window that can float on top of other apps(except system setting)
+ * @param view the content view. eg.ComposeView or else
+ * @param layoutParams the layout params of the view
+ */
 @Composable
 fun FloatingWindow(view: View, layoutParams: LayoutParams) {
     val context = LocalContext.current
@@ -55,6 +60,13 @@ fun FloatingWindow(view: View, layoutParams: LayoutParams) {
     }
 }
 
+/**
+ * A window that can float on top of other apps(except system setting)
+ * @param layoutParams the layout params of the view
+ * @param draggable whether the view can be dragged
+ * @param autoKeepSide whether the view will keep on the side of the screen auto
+ * @param content the content of the view
+ */
 @Composable
 fun FloatingWindow(layoutParams: LayoutParams, draggable: Boolean=true, autoKeepSide: Boolean=true, content: @Composable () -> Unit) {
     val context = LocalContext.current
@@ -80,7 +92,12 @@ fun FloatingWindow(layoutParams: LayoutParams, draggable: Boolean=true, autoKeep
     }
 }
 
-
+/**
+ * A window that can float on top of other apps(except system setting)
+ * @param draggable whether the view can be dragged
+ * @param autoKeepSide whether the view will keep on the side of the screen auto
+ * @param content the content of the view
+ */
 @Composable
 fun FloatingWindow(draggable: Boolean=true, autoKeepSide: Boolean=true, content: @Composable () -> Unit) {
     val defaultLayoutParams = LayoutParams(
@@ -98,8 +115,8 @@ fun FloatingWindow(draggable: Boolean=true, autoKeepSide: Boolean=true, content:
 }
 
 /**
- * 一个可以拖动并自动靠边的小窗
- * 你可以点击按钮，让数字加1
+ * A sample of FloatingWindow
+ * This is a sample of FloatingWindow, you can use it to test the function of FloatingWindow
  */
 @Composable
 fun FloatingWindowSample() {
@@ -117,6 +134,13 @@ fun FloatingWindowSample() {
     }
 }
 
+/**
+ * A modifier that can be dragged or side auto
+ * @param view the view that can be dragged
+ * @param layoutParams the layout params of the view
+ * @param autoKeepSide whether the view will keep on the side of the screen auto
+ * @return the modifier
+ */
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun Modifier.dragLayout(view: ComposeView, layoutParams: LayoutParams, autoKeepSide: Boolean=true): Modifier = this.composed {
@@ -189,6 +213,9 @@ fun Modifier.dragLayout(view: ComposeView, layoutParams: LayoutParams, autoKeepS
     })
 }
 
+/**
+ * A sample of content of FloatingWindow
+ */
 @Composable
 private fun FloatingContentSample() {
     Column(
@@ -208,6 +235,9 @@ private fun FloatingContentSample() {
     }
 }
 
+/**
+ * A evaluator of IntOffset
+ */
 private class IntOffsetEvaluator: TypeEvaluator<IntOffset> {
     override fun evaluate(fraction: Float, startValue: IntOffset, endValue: IntOffset): IntOffset {
         // 贝塞尔曲线式的计算
@@ -221,11 +251,3 @@ private class IntOffsetEvaluator: TypeEvaluator<IntOffset> {
 //        )
     }
 }
-
-//private class FadeInFastOutEvaluator: TypeEvaluator<IntOffset> {
-//    override fun evaluate(fraction: Float, startValue: IntOffset, endValue: IntOffset): IntOffset {
-//        return IntOffset(
-//            (startValue.x + )
-//        )
-//    }
-//}

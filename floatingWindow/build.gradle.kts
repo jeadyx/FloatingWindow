@@ -1,6 +1,39 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("org.jetbrains.dokka") version "1.9.20" // add this line when you using kotlin project else comment it
+    id("io.github.jeadyx.sonatype-uploader") version "2.8"
+}
+group = "io.github.jeadyx.compose"
+version = "1.0"
+val tokenUsername:String by project
+val tokenPassword:String by project
+sonatypeUploader {
+    tokenName = tokenUsername
+    tokenPasswd = tokenPassword
+    pom = Action<MavenPom>{
+        name = "floatingwindow"
+        description = "A floating window with jetpack compose."
+        url = "https://github.com/jeadyx/FloatingWindow"
+        licenses {
+            license {
+                name = "The Apache License, Version 2.0"
+                url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+            }
+        }
+        developers {
+            developer {
+                id = "jeady"
+                name = "jeady"
+                email = "jeadyx@outlook.com"
+            }
+        }
+        scm {
+            connection = "scm:git:git://github.com/jeadyx/FloatingWindow"
+            developerConnection = "scm:git:ssh://github.com/jeadyx/FloatingWindow"
+            url = "https://github.com/jeadyx/FloatingWindow"
+        }
+    }
 }
 
 android {
